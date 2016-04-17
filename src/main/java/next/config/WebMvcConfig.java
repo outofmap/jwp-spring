@@ -1,8 +1,11 @@
 package next.config;
 
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -10,6 +13,9 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+
+import next.MyHandlerMethodArgumentResolver;
+
 
 @Configuration
 @EnableWebMvc
@@ -21,6 +27,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     public ViewResolver viewResolver() {
         InternalResourceViewResolver bean = new InternalResourceViewResolver();
         bean.setViewClass(JstlView.class);
+        //prefix suffix를 활용해 viewname을 줄일 수 있음
         bean.setPrefix("/WEB-INF/jsp/");
         bean.setSuffix(".jsp");
         return bean;
@@ -38,5 +45,13 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         // Serving static files using the Servlet container's default Servlet.
         configurer.enable();
-    }    
+    }
+    
+	@Override
+	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+		MyHandlerMethodArgumentResolver myHandler = new MyHandlerMethodArgumentResolver();
+		argumentResolvers.add(myHandler);
+	}
+    
+    
 }

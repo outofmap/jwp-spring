@@ -7,7 +7,7 @@ function addAnswer(e) {
 
   $.ajax({
     type : 'post',
-    url : '/api/qna/addAnswer',
+    url : '/api/qna/answer/add',
     data : queryString,
     dataType : 'json',
     error: onError,
@@ -42,7 +42,7 @@ function deleteAnswer(e) {
 
   $.ajax({
     type: 'post',
-    url: "/api/qna/deleteAnswer",
+    url: "/api/qna/answer/delete",
     data: queryString,
     dataType: 'json',
     error: function (xhr, status) {

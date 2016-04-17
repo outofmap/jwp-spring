@@ -15,6 +15,10 @@ public class Question {
 	
 	private int countOfComment;
 	
+	public Question() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Question(String writer, String title, String contents) {
 		this(0, writer, title, contents, new Date(), 0);
 	}	
@@ -28,6 +32,7 @@ public class Question {
 		this.createdDate = createdDate;
 		this.countOfComment = countOfComment;
 	}
+
 
 	public long getQuestionId() {
 		return questionId;

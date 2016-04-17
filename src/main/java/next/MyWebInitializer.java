@@ -22,12 +22,13 @@ public class MyWebInitializer implements WebApplicationInitializer {
 		cef.setEncoding("UTF-8");
 		cef.setForceEncoding(true);
 		servletContext.addFilter("characterEncodingFilter", cef).addMappingForUrlPatterns(null, false, "/*");
-
+		//put과 delete를 사용하려고 더해준 httpMethodeFilter 
 		servletContext.addFilter("httpMethodFilter", HiddenHttpMethodFilter.class)
 				.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), false, "/*");
-
+		
 		AnnotationConfigWebApplicationContext webContext = new AnnotationConfigWebApplicationContext();
 		webContext.register(WebMvcConfig.class);
+		//Servlet 생성 
 		ServletRegistration.Dynamic dispatcher = servletContext.addServlet("next", new DispatcherServlet(webContext));
 		dispatcher.setLoadOnStartup(1);
 		dispatcher.addMapping("/");
