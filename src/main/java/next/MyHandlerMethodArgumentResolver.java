@@ -14,11 +14,7 @@ public class MyHandlerMethodArgumentResolver implements HandlerMethodArgumentRes
 	
 	@Override
 	public boolean supportsParameter(MethodParameter parameter) {
-		if(parameter.getParameterAnnotation(LoginUser.class)!=null
-				&& parameter.getClass().isAssignableFrom(User.class)){
-			return true;
-		}
-		return false;
+		return parameter.hasParameterAnnotation(LoginUser.class);
 	}
 	
 	@Override
