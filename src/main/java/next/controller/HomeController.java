@@ -1,5 +1,7 @@
 package next.controller;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -9,7 +11,8 @@ import next.dao.QuestionDao;
 
 @Controller
 public class HomeController {
-	private QuestionDao questionDao = QuestionDao.getInstance();
+	@Resource
+	private QuestionDao questionDao;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home() throws Exception {

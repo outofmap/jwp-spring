@@ -5,6 +5,8 @@ import static org.mockito.Mockito.verify;
 
 import java.util.Date;
 
+import javax.annotation.Resource;
+
 import next.CannotOperateException;
 import next.dao.AnswerDao;
 import next.dao.QuestionDao;
@@ -27,13 +29,13 @@ public class QnaServiceTest {
     private QuestionDao questionDao;
     @Mock
     private AnswerDao answerDao;
-    
+    @Resource
     private QnaService qnaService;
 
-    @Before
-    public void setup() {
-    	qnaService = new QnaService(questionDao, answerDao);
-    }
+//    @Before
+//    public void setup() {
+//    	qnaService;
+//    }
     
     @Test(expected = EmptyResultDataAccessException.class)
     public void deleteQuestion_없는_질문() throws Exception {
